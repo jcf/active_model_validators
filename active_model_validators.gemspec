@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   # NOTE Used by the EmailValidator
   s.add_runtime_dependency 'mail'
 
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'shoulda-matchers'
 end
