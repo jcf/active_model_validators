@@ -6,32 +6,21 @@ module ActiveModel
     # EmailValidator will validate the format of an email using the awesome
     # Mail gem.
     class EmailValidator < EachValidator
-      attr_reader :record, :attribute, :value, :email, :tree
+      class Validator
+        include ActiveModelValidators::Validator
 
-      class Validator < Struct.new(:record, :attribute, :value, :options)
         attr_reader :email, :tree
 
-        def initialize(*args)
-          super
-        end
-
         def validate!
-          return if options[:allow_blank] && value.blank?
-          return if options[:allow_nil] && value.nil?
-
           @email = Mail::Address.new(value)
           @tree  = email.__send__(:tree)
 
-          add_error unless valid?
+          super
         rescue Mail::Field::ParseError
           add_error
         end
 
         private
-
-        def valid?
-          !!(domain_and_address_present? && domain_has_more_than_one_atom?)
-        end
 
         def domain_and_address_present?
           email.domain && email.address == value
@@ -41,12 +30,8 @@ module ActiveModel
           tree.domain.dot_atom_text.elements.length > 1
         end
 
-        def add_error
-          if message = options[:message]
-            record.errors[attribute] << message
-          else
-            record.errors.add(attribute, :invalid)
-          end
+        def valid?
+          !!(domain_and_address_present? && domain_has_more_than_one_atom?)
         end
       end
 

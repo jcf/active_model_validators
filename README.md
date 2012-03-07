@@ -73,6 +73,7 @@ james.errors[:email] # => ["is invalid"]
 
 ## TODO
 
+- TomDoc up!
 - Add UK postcode validator
 - Add US Zip code validator
 - Add IBAN number validator
