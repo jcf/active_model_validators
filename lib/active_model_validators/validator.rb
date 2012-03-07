@@ -31,16 +31,10 @@ module ActiveModelValidators
     end
 
     def validate!
-      return if value_allowed?
       add_error unless valid?
     end
 
     private
-
-    def value_allowed?
-      (options[:allow_blank] && value.blank?) ||
-        (options[:allow_nil] && value.nil?)
-    end
 
     def valid?
       raise NotImplementedError, 'override this method'
