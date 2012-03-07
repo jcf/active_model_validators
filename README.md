@@ -4,6 +4,11 @@ A suite of validators for ActiveModel objects.
 
 ---
 
+### Validators
+
+- **validates_as_email** uses the [Mail](https://github.com/mikel/mail)
+  gem to parse and validate email addresses.
+
 ## Supported Ruby versions
 
 **Ruby 1.8 is not supported and will not work**
