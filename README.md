@@ -37,7 +37,7 @@ gem 'active_model_validators'
 require 'active_model'
 require 'active_model_validators'
 
-class Animal
+class Person
   include ActiveModel::Serialization
   include ActiveModel::Validations
 
@@ -48,7 +48,22 @@ class Animal
   def initialize(attributes = {})
     self.attributes = attributes
   end
+
+  def email
+    attributes[:email]
+  end
+
+  def email=(address)
+    attributes[:email] = address
+  end
 end
+
+james = Person.new(email: 'james@logi.cl')
+james.valid? # => true
+
+james.email = 'invalid'
+james.valid?         # => false
+james.errors[:email] # => ["is invalid"]
 ```
 
 ## TODO
