@@ -1,4 +1,6 @@
+language: ruby
+bundler_args: --without extras
 rvm:
   - 1.9.3
-  - jruby
+  - jruby-19mode
   - rbx-19mode
