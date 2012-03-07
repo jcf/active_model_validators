@@ -1,7 +1,6 @@
 module ActiveModelValidators::Model
   extend ActiveSupport::Concern
 
-  include ActiveModel::Serialization
   include ActiveModel::Validations
 
   included do
