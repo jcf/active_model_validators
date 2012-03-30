@@ -30,7 +30,7 @@ module ActiveModelValidators
       @options   = options
     end
 
-    def validate!
+    def validate
       add_error unless valid?
     end
 

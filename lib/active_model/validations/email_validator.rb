@@ -11,7 +11,7 @@ module ActiveModel
 
         attr_reader :email, :tree
 
-        def validate!
+        def validate
           @email = Mail::Address.new(value)
           @tree  = email.__send__(:tree)
 
@@ -36,7 +36,7 @@ module ActiveModel
       end
 
       def validate_each(record, attribute, value)
-        Validator.new(record, attribute, value, options).validate!
+        Validator.new(record, attribute, value, options).validate
       end
     end
 
